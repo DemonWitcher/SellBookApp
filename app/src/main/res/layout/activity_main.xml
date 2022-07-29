@@ -4,15 +4,63 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/white"
     tools:context=".MainActivity">
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Hello World!"
+    <androidx.viewpager2.widget.ViewPager2
+        android:id="@+id/vp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toTopOf="@+id/tv_shop"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"/>
+
+    <ImageView
+        android:id="@+id/iv_shop"
+        android:src="@mipmap/shop_tab2"
+        app:layout_constraintStart_toStartOf="@+id/tv_shop"
+        app:layout_constraintEnd_toEndOf="@+id/tv_shop"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        android:layout_marginBottom="30dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"/>
+
+    <ImageView
+        android:id="@+id/iv_mine"
+        android:src="@mipmap/mine_tab1"
+        app:layout_constraintStart_toStartOf="@+id/tv_mine"
+        app:layout_constraintEnd_toEndOf="@+id/tv_mine"
+        app:layout_constraintBottom_toBottomOf="parent"
+        android:layout_marginBottom="28dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"/>
+
+    <TextView
+        android:id="@+id/tv_shop"
+        android:layout_width="0dp"
+        android:layout_height="65dp"
+        android:gravity="center_horizontal|bottom"
+        android:paddingBottom="10dp"
+        android:text="图书"
+        android:textColor="@color/main_bg"
+        android:textSize="13dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/tv_mine"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <TextView
+        android:id="@+id/tv_mine"
+        android:layout_width="0dp"
+        android:layout_height="65dp"
+        android:gravity="center_horizontal|bottom"
+        android:paddingBottom="10dp"
+        android:text="我的"
+        android:textSize="13dp"
+        android:textColor="@color/main_tv"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/tv_shop" />
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>
