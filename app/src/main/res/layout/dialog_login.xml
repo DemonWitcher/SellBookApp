@@ -7,7 +7,7 @@
     tools:context=".MainActivity">
 
    <androidx.constraintlayout.widget.ConstraintLayout
-       android:layout_width="340dp"
+       android:layout_width="300dp"
        android:layout_height="280dp"
        android:background="@drawable/login_white_bg"
        app:layout_constraintBottom_toBottomOf="parent"

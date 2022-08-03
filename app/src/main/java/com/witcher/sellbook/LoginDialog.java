@@ -18,8 +18,12 @@ import androidx.annotation.NonNull;
 
 public class LoginDialog extends Dialog {
 
+    public static LoginDialog newInstance(Context context) {
+        return new LoginDialog(context);
+    }
+
     public LoginDialog(@NonNull Context context) {
-        super(context);
+        super(context, R.style.commonDialog);
     }
 
     private EditText mEtPhone, mEtPassword;

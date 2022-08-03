@@ -44,6 +44,8 @@ public class MainActivity extends BaseActivity {
         mTvShop.setOnClickListener(mNoDoubleClickListener);
         mTvMine.setOnClickListener(mNoDoubleClickListener);
         mVp.setAdapter(new MainVpAdapter(this));
+        mVp.setUserInputEnabled(false);
+        mVp.setEnabled(false);
         mVp.setOrientation(ViewPager2.ORIENTATION_HORIZONTAL);
         mVp.registerOnPageChangeCallback(new ViewPager2.OnPageChangeCallback() {
             @Override
@@ -63,8 +65,7 @@ public class MainActivity extends BaseActivity {
                 if (UserHelper.isLogin()) {
                     setVpCurrent(1);
                 } else {
-                    LoginDialog dialog = new LoginDialog(MainActivity.this);
-                    dialog.show();
+                    LoginDialog.newInstance(MainActivity.this).show();
                 }
             }
         }

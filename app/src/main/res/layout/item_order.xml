@@ -5,6 +5,7 @@
     android:id="@+id/cl_root"
     android:layout_width="match_parent"
     android:layout_height="160dp"
+    android:background="@color/white"
     tools:context=".MainActivity">
 
     <ImageView
@@ -31,7 +32,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/iv_cover"
         app:layout_constraintTop_toTopOf="@+id/iv_cover"
-        tools:text="书名书名书名书名书名书名书名" />
+        tools:text="书名书名书名书名书名书名书名书名书名书名书名书名书名书名" />
 
     <TextView
         android:id="@+id/tv_info"
@@ -66,14 +67,14 @@
         app:layout_constraintStart_toEndOf="@+id/iv_cover"
         tools:text="35元" />
 
-    <ImageView
-        android:id="@+id/iv_collection"
-        android:layout_width="40dp"
-        android:layout_height="34dp"
-        android:layout_marginEnd="6dp"
-        android:paddingEnd="6dp"
-        android:paddingStart="6dp"
-        android:paddingTop="6dp"
+    <TextView
+        android:id="@+id/tv_status"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="12dp"
+        android:textSize="16dp"
+        android:textColor="@color/main_bg"
+        android:text="待付款"
         app:layout_constraintBottom_toBottomOf="@id/iv_cover"
         app:layout_constraintEnd_toEndOf="parent" />
 

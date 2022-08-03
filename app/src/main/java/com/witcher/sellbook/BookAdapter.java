@@ -9,6 +9,7 @@ import android.widget.TextView;
 import com.witcher.sellbook.event.CollectionEvent;
 import com.witcher.sellbook.module.Book;
 import com.witcher.sellbook.util.CommonUtil;
+import com.witcher.sellbook.util.NoDoubleClickListener;
 import com.witcher.sellbook.util.UserHelper;
 
 import org.greenrobot.eventbus.EventBus;
@@ -16,19 +17,20 @@ import org.greenrobot.eventbus.EventBus;
 import java.util.List;
 
 import androidx.annotation.NonNull;
+import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.recyclerview.widget.RecyclerView;
 
 public class BookAdapter extends RecyclerView.Adapter<BookAdapter.BookHolder> {
 
     private List<Book> mBooks;
-    private boolean mIsCollection;
+    private boolean mIsUseInCollectionPage;
 
     public void setData(List<Book> books) {
         this.mBooks = books;
     }
 
     public void setIsCollection(boolean isCollection) {
-        this.mIsCollection = isCollection;
+        this.mIsUseInCollectionPage = isCollection;
     }
 
     @NonNull
@@ -41,14 +43,14 @@ public class BookAdapter extends RecyclerView.Adapter<BookAdapter.BookHolder> {
     @Override
     public void onBindViewHolder(@NonNull BookAdapter.BookHolder holder, int position) {
         Book book = mBooks.get(position);
-        holder.ivCover.setImageResource(R.mipmap.tushu);
-        holder.tvInfo.setText(String.format("作者:%s | 出版社:%s", book.getAuthor(), book.getPress()));
+        CommonUtil.loadCover(holder.ivCover, book.getCover());
+        holder.tvInfo.setText(CommonUtil.getBookInfo(book));
         holder.tvName.setText(book.getName());
         holder.tvPrice.setText(CommonUtil.formatPrice(book.getPrice()));
         if (UserHelper.isCollection(book.getId())) {
-            holder.ivCollection.setImageResource(R.mipmap.iv_collection2);
+            holder.ivCollection.setImageResource(R.mipmap.ic_details_collection1);
         } else {
-            holder.ivCollection.setImageResource(R.mipmap.iv_collection1);
+            holder.ivCollection.setImageResource(R.mipmap.ic_details_collection2);
         }
         holder.ivCollection.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -56,20 +58,30 @@ public class BookAdapter extends RecyclerView.Adapter<BookAdapter.BookHolder> {
                 onClickCollection(book, holder.ivCollection);
             }
         });
+        holder.clRoot.setOnClickListener(new NoDoubleClickListener() {
+            @Override
+            public void onNoDoubleClick(View v) {
+                BookActivity.go(holder.clRoot.getContext(), book.getId());
+            }
+        });
     }
 
     private void onClickCollection(Book book, ImageView ivCollection) {
+        if (!UserHelper.isLogin()) {
+            LoginDialog.newInstance(ivCollection.getContext()).show();
+            return;
+        }
         boolean isCollection;
         if (UserHelper.isCollection(book.getId())) {
             UserHelper.removeCollection(book.getId());
-            ivCollection.setImageResource(R.mipmap.iv_collection1);
+            ivCollection.setImageResource(R.mipmap.ic_details_collection2);
             isCollection = false;
         } else {
             UserHelper.addCollection(book.getId());
-            ivCollection.setImageResource(R.mipmap.iv_collection2);
+            ivCollection.setImageResource(R.mipmap.ic_details_collection1);
             isCollection = true;
         }
-        if (mIsCollection) {
+        if (mIsUseInCollectionPage) {
             EventBus.getDefault().post(new CollectionEvent(book.getId(), isCollection));
         }
     }
@@ -86,13 +98,16 @@ public class BookAdapter extends RecyclerView.Adapter<BookAdapter.BookHolder> {
 
         ImageView ivCover, ivCollection;
         TextView tvName, tvInfo, tvPrice;
+        ConstraintLayout clRoot;
 
         public BookHolder(@NonNull View itemView) {
             super(itemView);
             ivCover = itemView.findViewById(R.id.iv_cover);
             tvName = itemView.findViewById(R.id.tv_name);
-            tvInfo = itemView.findViewById(R.id.tv_infor);
+            tvInfo = itemView.findViewById(R.id.tv_info);
             tvPrice = itemView.findViewById(R.id.tv_price);
+            ivCollection = itemView.findViewById(R.id.iv_collection);
+            clRoot = itemView.findViewById(R.id.cl_root);
         }
     }
 }

@@ -1,6 +1,9 @@
 package com.witcher.sellbook;
 
 import android.annotation.SuppressLint;
+import android.graphics.Canvas;
+import android.graphics.Color;
+import android.graphics.Paint;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -15,6 +18,7 @@ import com.witcher.sellbook.util.DaoHelper;
 import com.witcher.sellbook.util.NoDoubleClickListener;
 import com.witcher.sellbook.util.UserHelper;
 
+import org.greenrobot.eventbus.EventBus;
 import org.greenrobot.eventbus.Subscribe;
 import org.greenrobot.eventbus.ThreadMode;
 
@@ -46,6 +50,9 @@ public class ShopFragment extends BaseFragment {
         View view = inflater.inflate(R.layout.fragment_shop, null);
         initView(view);
         initData();
+        if (!EventBus.getDefault().isRegistered(this)) {
+            EventBus.getDefault().register(this);
+        }
         return view;
     }
 
@@ -79,8 +86,7 @@ public class ShopFragment extends BaseFragment {
         public void onNoDoubleClick(View v) {
             int id = v.getId();
             if (id == R.id.tv_login) {
-                LoginDialog dialog = new LoginDialog(getContext());
-                dialog.show();
+                LoginDialog.newInstance(getContext()).show();
             }
         }
     };
@@ -98,6 +104,14 @@ public class ShopFragment extends BaseFragment {
             mTvLogin.setVisibility(View.VISIBLE);
         }
         mAdapter.notifyDataSetChanged();
+    }
+
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+        if (EventBus.getDefault().isRegistered(this)) {
+            EventBus.getDefault().unregister(this);
+        }
     }
 
     @Subscribe(threadMode = ThreadMode.MAIN)

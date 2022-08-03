@@ -8,10 +8,14 @@
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
 
-    <color name="main_bg">#FF8C00</color>
+<!--    <color name="main_bg">#FF8C00</color>-->
+    <color name="main_bg">#d44848</color>
+<!--    <color name="main_bg">#fbd26a</color>-->
     <color name="main_tv">#333333</color>
     <color name="main_gray">#30999999</color>
     <color name="main_gray2">#666666</color>
+
+    <color name="green">#66ff00</color>
 
 
 </resources>

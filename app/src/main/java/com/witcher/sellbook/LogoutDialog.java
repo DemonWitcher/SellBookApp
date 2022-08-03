@@ -14,7 +14,7 @@ import androidx.annotation.NonNull;
 public class LogoutDialog extends Dialog {
 
     public LogoutDialog(@NonNull Context context) {
-        super(context);
+        super(context, R.style.commonDialog);
     }
 
     private TextView mTvOk, mTvCancel;
@@ -22,7 +22,7 @@ public class LogoutDialog extends Dialog {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.dialog_login);
+        setContentView(R.layout.dialog_logout);
         initView();
     }
 

@@ -7,8 +7,11 @@ import org.greenrobot.greendao.annotation.Generated;
 @Entity
 public class Order {
 
-    @Id(autoincrement = true)
-    private long orderId;
+    public static final int STATUS_PAY = 1;
+    public static final int STATUS_FINISH = 2;
+
+    @Id
+    private String orderId;
 
     /**
      * 从属uid
@@ -26,17 +29,24 @@ public class Order {
     private long createTime;
 
     /**
+     * 完成时间
+     */
+    private long finishTime;
+
+    /**
      * 1 待付款
      * 2 已完成
      */
     private int status;
 
-    @Generated(hash = 2034242642)
-    public Order(long orderId, long uid, long bookId, long createTime, int status) {
+    @Generated(hash = 1788133623)
+    public Order(String orderId, long uid, long bookId, long createTime,
+            long finishTime, int status) {
         this.orderId = orderId;
         this.uid = uid;
         this.bookId = bookId;
         this.createTime = createTime;
+        this.finishTime = finishTime;
         this.status = status;
     }
 
@@ -44,11 +54,11 @@ public class Order {
     public Order() {
     }
 
-    public long getOrderId() {
+    public String getOrderId() {
         return orderId;
     }
 
-    public void setOrderId(long orderId) {
+    public void setOrderId(String orderId) {
         this.orderId = orderId;
     }
 
@@ -82,5 +92,13 @@ public class Order {
 
     public void setStatus(int status) {
         this.status = status;
+    }
+
+    public long getFinishTime() {
+        return this.finishTime;
+    }
+
+    public void setFinishTime(long finishTime) {
+        this.finishTime = finishTime;
     }
 }

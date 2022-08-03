@@ -8,7 +8,7 @@ import org.greenrobot.greendao.annotation.Generated;
 public class Book {
 
     @Id(autoincrement = true)
-    private long id;
+    private Long id;
 
     /**
      * 书名
@@ -18,7 +18,7 @@ public class Book {
     /**
      * 价格 单位分
      */
-    private long price;
+    private int price;
 
     /**
      * 封面
@@ -50,8 +50,8 @@ public class Book {
      */
     private String details;
 
-    @Generated(hash = 158025040)
-    public Book(long id, String name, long price, String cover, String author,
+    @Generated(hash = 911141216)
+    public Book(Long id, String name, int price, String cover, String author,
             String press, String publishData, String labels, String details) {
         this.id = id;
         this.name = name;
@@ -76,12 +76,8 @@ public class Book {
         this.details = details;
     }
 
-    public long getId() {
+    public Long getId() {
         return id;
-    }
-
-    public void setId(long id) {
-        this.id = id;
     }
 
     public String getName() {
@@ -92,11 +88,11 @@ public class Book {
         this.name = name;
     }
 
-    public long getPrice() {
+    public int getPrice() {
         return price;
     }
 
-    public void setPrice(long price) {
+    public void setPrice(int price) {
         this.price = price;
     }
 
@@ -138,5 +134,9 @@ public class Book {
 
     public void setLabels(String labels) {
         this.labels = labels;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
     }
 }

@@ -19,10 +19,12 @@ import java.util.List;
 
 /**
  * 查询所有书籍
+ * 查询书 by bookId
  * 查询收藏的所有书籍
  * 查询某个用户by id
  * 查询收藏关系 by uid
  * 查询所有订单 by uid
+ * 查询订单 by orderId
  * <p>
  * 插入书籍list
  * 插入一条用户
@@ -70,6 +72,10 @@ public class DaoHelper {
         return bookDao.loadAll();
     }
 
+    public Book getBook(long id) {
+        return bookDao.load(id);
+    }
+
     public List<Book> getAllCollectionBook() {
         List<Book> list = new ArrayList<>();
         List<Collection> collections = UserHelper.getCollections();
@@ -101,6 +107,10 @@ public class DaoHelper {
         return orderDao.queryBuilder().where(OrderDao.Properties.Uid.eq(uid)).list();
     }
 
+    public Order getOrder(String id) {
+        return orderDao.load(id);
+    }
+
     public void addBook(List<Book> books) {
         bookDao.insertInTx(books);
     }
@@ -117,8 +127,12 @@ public class DaoHelper {
         orderDao.insert(order);
     }
 
-    public void deleteOrder(Order order) {
-        orderDao.delete(order);
+    public void updateOrder(Order order) {
+        orderDao.update(order);
+    }
+
+    public void updateUser(User user) {
+        userDao.update(user);
     }
 
     public void deleteCollection(Collection collection) {
