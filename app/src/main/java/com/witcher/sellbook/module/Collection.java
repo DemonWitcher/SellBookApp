@@ -4,13 +4,24 @@ import org.greenrobot.greendao.annotation.Entity;
 import org.greenrobot.greendao.annotation.Generated;
 import org.greenrobot.greendao.annotation.Id;
 
+/**
+ * 收藏关系实体类
+ */
 @Entity
 public class Collection {
 
+    /**
+     * 收藏关系id 主键 自增
+     */
     @Id(autoincrement = true)
     private Long id;
-
+    /**
+     * 用户id
+     */
     private long uid;
+    /**
+     * 书id
+     */
     private long bookId;
 
     @Generated(hash = 1238595165)

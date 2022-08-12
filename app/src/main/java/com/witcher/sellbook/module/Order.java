@@ -4,35 +4,38 @@ import org.greenrobot.greendao.annotation.Entity;
 import org.greenrobot.greendao.annotation.Id;
 import org.greenrobot.greendao.annotation.Generated;
 
+/**
+ * 订单实体类
+ */
 @Entity
 public class Order {
 
+    /**
+     * 订单状态 1待付款 2已完成
+     */
     public static final int STATUS_PAY = 1;
     public static final int STATUS_FINISH = 2;
-
+    /**
+     * 订单ID 主键
+     */
     @Id
     private String orderId;
-
     /**
      * 从属uid
      */
     private long uid;
-
     /**
      * 书id
      */
     private long bookId;
-
     /**
      * 创建时间
      */
     private long createTime;
-
     /**
      * 完成时间
      */
     private long finishTime;
-
     /**
      * 1 待付款
      * 2 已完成

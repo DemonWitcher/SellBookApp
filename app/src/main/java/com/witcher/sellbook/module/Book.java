@@ -4,47 +4,45 @@ import org.greenrobot.greendao.annotation.Entity;
 import org.greenrobot.greendao.annotation.Id;
 import org.greenrobot.greendao.annotation.Generated;
 
+/**
+ * 书籍实体类
+ */
 @Entity
 public class Book {
 
+    /**
+     * 书id 主键 自增
+     */
     @Id(autoincrement = true)
     private Long id;
-
     /**
      * 书名
      */
     private String name;
-
     /**
      * 价格 单位分
      */
     private int price;
-
     /**
      * 封面
      */
     private String cover;
-
     /**
      * 作者
      */
     private String author;
-
     /**
      * 出版社
      */
     private String press;
-
     /**
      * 发布日
      */
     private String publishData;
-
     /**
      * 标签
      */
     private String labels;
-
     /**
      * 详情
      */
@@ -52,7 +50,7 @@ public class Book {
 
     @Generated(hash = 911141216)
     public Book(Long id, String name, int price, String cover, String author,
-            String press, String publishData, String labels, String details) {
+                String press, String publishData, String labels, String details) {
         this.id = id;
         this.name = name;
         this.price = price;

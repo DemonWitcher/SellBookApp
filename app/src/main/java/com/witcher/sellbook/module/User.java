@@ -4,14 +4,32 @@ import org.greenrobot.greendao.annotation.Entity;
 import org.greenrobot.greendao.annotation.Id;
 import org.greenrobot.greendao.annotation.Generated;
 
+/**
+ * 用户实体类
+ */
 @Entity
 public class User {
 
+    /**
+     * 用户id 主键 自增
+     */
     @Id(autoincrement = true)
     private Long id;
+    /**
+     * 用户昵称
+     */
     private String nickName;
+    /**
+     * 手机号
+     */
     private String phoneNumber;
+    /**
+     * 密码
+     */
     private String password;
+    /**
+     * 我的地址
+     */
     private String address;
 
     @Generated(hash = 1479042527)

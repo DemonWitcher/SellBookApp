@@ -27,7 +27,6 @@ public class LoginDialog extends Dialog {
     }
 
     private EditText mEtPhone, mEtPassword;
-    private TextView mTvLogin;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -39,14 +38,21 @@ public class LoginDialog extends Dialog {
     private void initView() {
         mEtPhone = findViewById(R.id.et_phone);
         mEtPassword = findViewById(R.id.et_password);
-        mTvLogin = findViewById(R.id.tv_login);
-        mTvLogin.setOnClickListener(new NoDoubleClickListener() {
-            @Override
-            public void onNoDoubleClick(View v) {
-                login();
-            }
-        });
+        findViewById(R.id.tv_login).setOnClickListener(mNoDoubleClickListener);
+        findViewById(R.id.iv_close).setOnClickListener(mNoDoubleClickListener);
     }
+
+    private final NoDoubleClickListener mNoDoubleClickListener = new NoDoubleClickListener() {
+        @Override
+        public void onNoDoubleClick(View v) {
+            int id = v.getId();
+            if (id == R.id.tv_login) {
+                login();
+            } else if (id == R.id.iv_close) {
+                dismiss();
+            }
+        }
+    };
 
     private void login() {
         String phone = mEtPhone.getText().toString();

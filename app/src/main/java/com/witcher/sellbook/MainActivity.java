@@ -7,8 +7,13 @@ import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.witcher.sellbook.event.LogoutEvent;
 import com.witcher.sellbook.util.NoDoubleClickListener;
 import com.witcher.sellbook.util.UserHelper;
+
+import org.greenrobot.eventbus.EventBus;
+import org.greenrobot.eventbus.Subscribe;
+import org.greenrobot.eventbus.ThreadMode;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
@@ -33,6 +38,13 @@ public class MainActivity extends BaseActivity {
         setContentView(R.layout.activity_main);
 
         initView();
+        EventBus.getDefault().register(this);
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        EventBus.getDefault().unregister(this);
     }
 
     private void initView() {
@@ -88,6 +100,11 @@ public class MainActivity extends BaseActivity {
             mIvShop.setImageResource(R.mipmap.shop_tab1);
             mIvMine.setImageResource(R.mipmap.mine_tab2);
         }
+    }
+
+    @Subscribe(threadMode = ThreadMode.MAIN)
+    public void onEventMainThread(LogoutEvent logoutEvent) {
+        setVpCurrent(0);
     }
 
     private static class MainVpAdapter extends FragmentStateAdapter {

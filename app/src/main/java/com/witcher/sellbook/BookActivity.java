@@ -67,7 +67,7 @@ public class BookActivity extends BaseActivity {
         }
         mTvName.setText(mBook.getName());
         mTvInfo.setText(CommonUtil.getBookInfo(mBook));
-        mTvTime.setText(String.format("初版日期: %s", mBook.getPublishData()));
+        mTvTime.setText(String.format("出版日期: %s", mBook.getPublishData()));
         mTvDetails.setText(mBook.getDetails());
         CommonUtil.loadCover(mIvCover, mBook.getCover());
         resetCollection();
