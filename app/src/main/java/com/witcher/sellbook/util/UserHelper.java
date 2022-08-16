@@ -26,6 +26,7 @@ public class UserHelper {
             return;
         }
         user = DaoHelper.getInstance().getUser(uid);
+        collections = DaoHelper.getInstance().getCollectionByUid(user.getId());
     }
 
     public static void register(String phone, String password) {
