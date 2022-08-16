@@ -34,7 +34,7 @@ public class BookActivity extends BaseActivity {
     }
 
     private ImageView mIvCover, mIvBack;
-    private TextView mTvName, mTvInfo, mTvTime, mTvDetails, mTvCollection;
+    private TextView mTvName, mTvInfo, mTvTime, mTvDetails, mTvCollection, mTvPrice;
     private FrameLayout mFlCollection, mFlBuy;
     private Book mBook;
 
@@ -69,6 +69,7 @@ public class BookActivity extends BaseActivity {
         mTvInfo.setText(CommonUtil.getBookInfo(mBook));
         mTvTime.setText(String.format("出版日期: %s", mBook.getPublishData()));
         mTvDetails.setText(mBook.getDetails());
+        mTvPrice.setText(CommonUtil.formatPrice(mBook.getPrice()));
         CommonUtil.loadCover(mIvCover, mBook.getCover());
         resetCollection();
     }
@@ -100,7 +101,7 @@ public class BookActivity extends BaseActivity {
         mTvCollection = findViewById(R.id.tv_collection);
         mFlCollection = findViewById(R.id.fl_collection);
         mFlBuy = findViewById(R.id.fl_buy);
-
+        mTvPrice = findViewById(R.id.tv_price);
         mFlCollection.setOnClickListener(mNoDoubleClickListener);
         mFlBuy.setOnClickListener(mNoDoubleClickListener);
         mIvBack.setOnClickListener(mNoDoubleClickListener);

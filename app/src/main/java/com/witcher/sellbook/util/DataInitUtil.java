@@ -31,7 +31,6 @@ public class DataInitUtil {
             book.setAuthor(authors.get(i));
             book.setDetails(details.get(i));
             book.setCover(covers.get(i));
-//            book.setLabels("神奇,哈哈,666");
             book.setPress(press.get(i));
             book.setPublishData(publishData.get(i));
             book.setPrice(priceList.get(i));
