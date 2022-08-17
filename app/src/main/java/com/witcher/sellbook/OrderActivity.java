@@ -28,9 +28,11 @@ import androidx.constraintlayout.widget.ConstraintLayout;
 public class OrderActivity extends BaseActivity {
 
     public static final int FROM_DETAILS = 1;
-
     public static final int FROM_MY_ORDER = 2;
 
+    /**
+     * 提供给图书详情页使用
+     */
     public static void goFromDetails(Context context, long bookId) {
         Intent intent = new Intent(context, OrderActivity.class);
         intent.putExtra("bookId", bookId);
@@ -38,6 +40,9 @@ public class OrderActivity extends BaseActivity {
         context.startActivity(intent);
     }
 
+    /**
+     * 提供给我的订单页使用
+     */
     public static void goFromMyOrder(Context context, String orderId) {
         Intent intent = new Intent(context, OrderActivity.class);
         intent.putExtra("orderId", orderId);

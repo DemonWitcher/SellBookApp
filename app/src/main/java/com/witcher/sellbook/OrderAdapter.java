@@ -54,9 +54,7 @@ public class OrderAdapter extends RecyclerView.Adapter<OrderAdapter.OrderHolder>
                 OrderActivity.goFromMyOrder(holder.clRoot.getContext(), order.getOrderId());
             }
         });
-
     }
-
 
     @Override
     public int getItemCount() {
